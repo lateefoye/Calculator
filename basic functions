@@ -6,9 +6,11 @@ public class Calculator implements ActionListener{
 	JFrame frame;
 	JTextField textfield;
 	JButton[] numberButtons = new JButton[10];
-	JButton[] functionButtons = new JButton[9];
+	JButton[] functionButtons = new JButton[10];
 	JButton addButton,subButton,mulButton,divButton;
 	JButton decButton,equButton,delButton,clrButton, negButton;
+	//my factorial button for the calculator
+	JButton facButton;
 	JPanel panel;
 	
 	Font myFont = new Font("Ink Free", Font.BOLD, 30);
@@ -37,6 +39,8 @@ public class Calculator implements ActionListener{
 		delButton = new JButton("Delete");
 		clrButton = new JButton("Clear");
 		negButton = new JButton("-");
+		// symbol for facbutton 
+		facButton = new JButton("x!");
 		
 		functionButtons[0] = addButton;
 		functionButtons[1] = subButton;
@@ -47,8 +51,10 @@ public class Calculator implements ActionListener{
 		functionButtons[6] = delButton;
 		functionButtons[7] = clrButton;
 		functionButtons[8] = negButton;
-		
-		for(int i=0; i<9;i++) {
+		// added another button to the array
+		functionButtons[9] = facButton;
+		//made the index of i go to 9 from the previous 8
+		for(int i=0; i<10;i++) {
 			functionButtons[i].addActionListener(this);
 			functionButtons[i].setFont(myFont);
 			functionButtons[i].setFocusable(false);
@@ -67,7 +73,8 @@ public class Calculator implements ActionListener{
 		
 		panel = new JPanel();
 		panel.setBounds(50, 100, 300, 300);
-		panel.setLayout(new GridLayout(4,4,10,10));
+		//changed the gridlayout to include 5 rows to accomodate the facButton
+		panel.setLayout(new GridLayout(5,4,10,10));
 		//panel.setBackground(Color.gray);
 		
 		panel.add(numberButtons[1]);
@@ -86,6 +93,8 @@ public class Calculator implements ActionListener{
 		panel.add(numberButtons[0]);
 		panel.add(equButton);
 		panel.add(divButton);
+		// added button to panel
+		panel.add(facButton);
 		
 		
 		frame.add(panel);
@@ -136,6 +145,21 @@ public class Calculator implements ActionListener{
 			operator = '/';
 			textfield.setText("");
 		}
+//---------------Fixing fac Button start----------------------------------------------------
+		/*if(e.getSource() == facButton){
+			
+			
+			
+//------------------------------------------------------------------------
+			int num2 = 1;
+			for(double i = num1; i>0; i--) {
+				num2 *=i;
+			}
+			System.out.println(num2);
+//-----------------------------------------------------------------------------
+		}*/
+//---------------Fixing fac Button end----------------------------------------------------
+
 		if(e.getSource() == equButton) {
 			num2=Double.parseDouble(textfield.getText());
 			
